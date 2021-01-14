@@ -37,6 +37,13 @@ class MapStore {
         return !!(this.instance.has(key)
             && this.instance.get(key).find(item => item.value === value && item.date === date));
     }
+
+    initArrayByKey(key) {
+        if (!this.instance.has(key))
+            return;
+
+        this.instance.set(key, []);
+    }
 }
 
 module.exports = new MapStore();
