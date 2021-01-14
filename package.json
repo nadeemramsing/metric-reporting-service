@@ -1,0 +1,24 @@
+{
+  "name": "metric-reporting-service",
+  "version": "0.0.1",
+  "description": "Metric logging and reporting service that sums metrics by time window for the most recent hour.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nadeemramsing/metric-reporting-service.git"
+  },
+  "author": "Nadeem Ramsing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nadeemramsing/metric-reporting-service/issues"
+  },
+  "homepage": "https://github.com/nadeemramsing/metric-reporting-service#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^4.3.1"
+  }
+}
