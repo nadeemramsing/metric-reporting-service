@@ -8,10 +8,10 @@ class MapStore {
         this.instance = new Map();
     }
 
-    postValue(key, value) {
+    postValue(key, value, date = convertDateToNumber(new Date())) {
         !this.instance.has(key) && this.instance.set(key, []);
 
-        this.instance.get(key).push({ value, 'date': convertDateToNumber(new Date()) });
+        this.instance.get(key).push({ value, date });
     }
 
     getSumByKey(key) {
@@ -31,6 +31,11 @@ class MapStore {
         const now = convertDateToNumber(new Date());
 
         this.instance.forEach(arr => arr = arr.filter(item => now - item.date <= valueTimeout))
+    }
+
+    contains(key, value, date) {
+        return !!(this.instance.has(key)
+            && this.instance.get(key).find(item => item.value === value && item.date === date));
     }
 }
 

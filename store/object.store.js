@@ -11,6 +11,8 @@ class ObjectStore {
     postValue(key, value) {
         const arr = this.instance[key] ? this.instance[key] : (this.instance[key] = []);
 
+        console.log('arr', arr);
+
         arr.push({ value, 'date': convertDateToNumber(new Date()) });
     }
 
@@ -32,6 +34,12 @@ class ObjectStore {
 
         for (const key in this.instance)
             this.instance[key] = this.instance[key].filter(item => now - item.date <= valueTimeout)
+    }
+
+    contains(key, value, date) {
+        console.log(this.instance, key, value, date);
+        try { return !!this.instance[key].find(item => item.value === value && item.date === date) }
+        catch (e) { return false }
     }
 }
 

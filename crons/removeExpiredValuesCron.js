@@ -1,7 +1,7 @@
 const cron = require('node-cron');
 
 const config = require('./../app.config');
-const defaultStore = require(`./../store/${config.defaultStore}.store`);
+const store = require(`./../store/${config.defaultStore}.store`);
 
 class RemoveExpiredValuesCron {
     constructor() {
@@ -9,7 +9,7 @@ class RemoveExpiredValuesCron {
     }
 
     run() {
-        defaultStore.removeExpiredValues()
+        store.removeExpiredValues()
     }
 }
 
