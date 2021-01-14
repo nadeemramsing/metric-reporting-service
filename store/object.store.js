@@ -18,7 +18,7 @@ class ObjectStore {
         const arr = this.instance[key];
 
         if (!arr)
-            return { value: 0 }
+            return 0
 
         const now = convertDateToNumber(new Date());
 

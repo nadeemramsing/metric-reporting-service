@@ -18,7 +18,7 @@ class MapStore {
         const arr = this.instance.get(key);
 
         if (!arr)
-            return { value: 0 }
+            return 0
 
         const now = convertDateToNumber(new Date());
 
