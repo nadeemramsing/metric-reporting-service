@@ -89,3 +89,15 @@ test('Store should tell if it does not contain an Object (contains)', () => {
 
     expect(store.contains(key, value + 1, date)).toBe(false);
 });
+
+test('Store should allow its arrays to be initialized (initArrayByKey)', () => {
+    const key = 'test_key';
+    const value = 50;
+    const date = convertDateToNumber(new Date());
+
+    store.instance.set(key, [{ value, date }]);
+
+    store.initArrayByKey(key);
+
+    expect(store.instance.get(key).length).toBe(0);
+});
