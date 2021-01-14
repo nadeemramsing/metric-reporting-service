@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "helmet": "^4.3.1",
     "lodash.range": "^3.2.0",
+    "lodash.sumby": "^4.6.0",
     "morgan": "^1.10.0",
     "node-cron": "^2.0.3"
   },

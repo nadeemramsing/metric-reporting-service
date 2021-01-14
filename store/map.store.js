@@ -21,16 +21,21 @@ class MapStore {
             return 0
 
         const now = convertDateToNumber(new Date());
+        const arrFiltered = arr.filter(item => now - item.date <= valueTimeout);
 
-        this.instance.set(key, arr.filter(item => now - item.date <= valueTimeout))
+        this.instance.set(key, arrFiltered)
 
-        return arr.reduce((acc, item) => acc + item.value, 0)
+        return arrFiltered.reduce((acc, item) => acc + item.value, 0)
     }
 
     removeExpiredValues() {
         const now = convertDateToNumber(new Date());
 
-        this.instance.forEach(arr => arr = arr.filter(item => now - item.date <= valueTimeout))
+        this.instance.forEach((arr, key) => {
+            const arrFiltered = arr.filter(item => now - item.date <= valueTimeout);
+
+            this.instance.set(key, arrFiltered);
+        });
     }
 
     contains(key, value, date) {
