@@ -5,7 +5,11 @@ const store = require(`./../store/${config.defaultStore}.store`);
 
 class RemoveExpiredValuesCron {
     constructor() {
-        this.task = cron.schedule('*/1 * * * *', this.run, { scheduled: false })
+        this.task = cron.schedule(
+            config.cronExpression.removeExpiredValues,
+            this.run,
+            { scheduled: false }
+        )
     }
 
     run() {
