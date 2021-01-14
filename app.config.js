@@ -8,4 +8,6 @@ module.exports = {
     port: process.env.PORT || '4444',
 
     prod: process.env.PROD === 'true' || false,
+
+    valueTimeout: +(process.env.VALUE_TIMEOUT || '60')
 }

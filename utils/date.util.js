@@ -3,5 +3,5 @@ module.exports = {
 };
 
 function convertDateToNumber(date) {
-    return +`${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}${date.getHours()}`;
+    return +`${date.getHours()}${date.getMinutes()}`;
 }

@@ -8,5 +8,5 @@ module.exports = (req, storeName = 'object') => {
 
     store.postValue(req.params.key, req.body.value);
 
-    return store.instance;
+    return {};
 };

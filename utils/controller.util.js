@@ -6,7 +6,10 @@ module.exports = {
 
 function wrap(method) {
     return async function (req, res, next) {
-        try { res.send(await method(req)) }
+        try {
+            const resolved = await method(req)
+            res.send(typeof resolved === 'number' ? '' + resolved : resolved)
+        }
         catch (e) { next(e) }
     }
 }
