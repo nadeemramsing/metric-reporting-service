@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const { port, prod } = require('./app.config');
+const beginCrons = require('./crons');
 
 const app = new express();
 
@@ -22,3 +23,5 @@ app.use(compression());
 app.use('/', require('./routing'));
 
 app.listen(port, console.log.apply(null, ['Server is listening on Port', port]));
+
+beginCrons();

@@ -22,9 +22,16 @@ class ObjectStore {
 
         const now = convertDateToNumber(new Date());
 
-        return arr
-            .filter(item => now - item.date <= valueTimeout)
-            .reduce((acc, item) => acc + item.value, 0);
+        this.instance[key] = arr.filter(item => now - item.date <= valueTimeout)
+
+        return arr.reduce((acc, item) => acc + item.value, 0)
+    }
+
+    removeExpiredValues() {
+        const now = convertDateToNumber(new Date());
+
+        for (const key in this.instance)
+            this.instance[key] = this.instance[key].filter(item => now - item.date <= valueTimeout)
     }
 }
 
