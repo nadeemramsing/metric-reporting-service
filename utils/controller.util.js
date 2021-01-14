@@ -5,8 +5,8 @@ module.exports = {
 };
 
 function wrap(method) {
-    return function (req, res, next) {
-        try { method(req, res, next) }
+    return async function (req, res, next) {
+        try { res.send(await method(req)) }
         catch (e) { next(e) }
     }
 }
