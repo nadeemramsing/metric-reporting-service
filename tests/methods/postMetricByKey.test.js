@@ -10,7 +10,6 @@ test('Valid input', () => {
     const date = convertDateToNumber(new Date());
 
     const req = {};
-
     req.params = { key };
     req.body = { value, date }
 
