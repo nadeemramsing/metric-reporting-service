@@ -5,6 +5,10 @@ const config = require('../../app.config');
 
 const { convertDateToNumber } = require('../../utils/date.util');
 
+const key = 'test_key';
+const value = 50;
+const date = convertDateToNumber(new Date());
+
 beforeEach(() => store.initArrayByKey('test_key'));
 
 test('Store should be a Map (instance)', () => {
@@ -12,19 +16,12 @@ test('Store should be a Map (instance)', () => {
 });
 
 test('Store should allow Object to be stored in it (postValue)', () => {
-    const key = 'test_key';
-    const value = 20;
-    const date = convertDateToNumber(new Date());
-
     store.postValue(key, value, date);
 
     expect(store.contains(key, value, date)).toBe(true);
 });
 
 test('Store should return sum of metrics by key (getSumByKey)', () => {
-    const key = 'test_key';
-    const date = convertDateToNumber(new Date());
-
     for (const value of range(1, 11))
         store.postValue(key, value, date);
 
@@ -32,13 +29,10 @@ test('Store should return sum of metrics by key (getSumByKey)', () => {
 });
 
 test('Store should return sum of non-expired metrics by key (getSumByKey)', () => {
-    const key = 'test_key';
-    const now = convertDateToNumber(new Date());
-
     for (const value of [10, 20, 30])
-        store.postValue(key, value, now);
+        store.postValue(key, value, date);
 
-    const expiredDate = now - (config.valueTimeout + 1);
+    const expiredDate = date - (config.valueTimeout + 1);
 
     for (const value of [100, 200])
         store.postValue(key, value, expiredDate);
@@ -47,16 +41,13 @@ test('Store should return sum of non-expired metrics by key (getSumByKey)', () =
 });
 
 test('Store should remove all expired values (removeExpiredValues) ', () => {
-    const key = 'test_key';
-    const now = convertDateToNumber(new Date());
-
     for (const value of range(1, 6))
-        store.postValue(key, value, now);
+        store.postValue(key, value, date);
 
     let arr = store.instance.get(key);
     expect(sumBy(arr, 'value')).toBe(15);
 
-    const expiredDate = now - (config.valueTimeout + 1);
+    const expiredDate = date - (config.valueTimeout + 1);
 
     for (const value of range(1, 11))
         store.postValue(key, value, expiredDate);
@@ -71,30 +62,18 @@ test('Store should remove all expired values (removeExpiredValues) ', () => {
 });
 
 test('Store should tell if it contains an Object (contains)', () => {
-    const key = 'test_key';
-    const value = 50;
-    const date = convertDateToNumber(new Date());
-
     store.instance.set(key, [{ value, date }]);
 
     expect(store.contains(key, value, date)).toBe(true);
 });
 
 test('Store should tell if it does not contain an Object (contains)', () => {
-    const key = 'test_key';
-    const value = 50;
-    const date = convertDateToNumber(new Date());
-
     store.instance.set(key, [{ value, date }]);
 
     expect(store.contains(key, value + 1, date)).toBe(false);
 });
 
 test('Store should allow its arrays to be initialized (initArrayByKey)', () => {
-    const key = 'test_key';
-    const value = 50;
-    const date = convertDateToNumber(new Date());
-
     store.instance.set(key, [{ value, date }]);
 
     store.initArrayByKey(key);
