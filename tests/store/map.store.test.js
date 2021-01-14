@@ -61,16 +61,12 @@ test('Store should remove all expired values (removeExpiredValues) ', () => {
     expect(sumBy(arr, 'value')).toBe(15);
 });
 
-test('Store should tell if it contains an Object (contains)', () => {
+test('Store should tell if it contains an Object (contains) or not', () => {
     store.instance.set(key, [{ value, date }]);
 
     expect(store.contains(key, value, date)).toBe(true);
-});
-
-test('Store should tell if it does not contain an Object (contains)', () => {
-    store.instance.set(key, [{ value, date }]);
-
     expect(store.contains(key, value + 1, date)).toBe(false);
+
 });
 
 test('Store should allow its arrays to be initialized (initArrayByKey)', () => {
