@@ -3,5 +3,6 @@ module.exports = {
 };
 
 function convertDateToNumber(date) {
-    return +`${date.getHours()}${date.getMinutes()}`;
+    try { return +`${date.getHours()}${date.getMinutes()}` }
+    catch (e) { return date }
 }
