@@ -6,3 +6,9 @@
 - Host app on AWS Lambda if possible (else, on other hosting apps)
 
 ### For documentation, use documentation generator: Swagger
+
+### For CI/CD, use Github Actions Workflows
+
+### For unit testing, use Jest
+
+### For deployment to AWS Lambda, use @vendia/serverless-express
