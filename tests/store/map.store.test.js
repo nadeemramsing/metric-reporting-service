@@ -6,11 +6,11 @@ const { convertDateToNumber } = require('../../utils/date.util');
 
 beforeEach(() => store.initArrayByKey('test_key'));
 
-test('Store should be a Map', () => {
+test('Store should be a Map (instance)', () => {
     expect(store.instance instanceof Map).toBe(true)
 });
 
-test('Store should allow Object to be stored in it', () => {
+test('Store should allow Object to be stored in it (postValue)', () => {
     const key = 'test_key';
     const value = 20;
     const date = convertDateToNumber(new Date());
@@ -20,7 +20,7 @@ test('Store should allow Object to be stored in it', () => {
     expect(store.contains(key, value, date)).toBe(true);
 });
 
-test('Store should return sum of metrics by key', () => {
+test('Store should return sum of metrics by key (getSumByKey)', () => {
     const key = 'test_key';
     const date = convertDateToNumber(new Date());
 
@@ -30,7 +30,7 @@ test('Store should return sum of metrics by key', () => {
     expect(store.getSumByKey('test_key')).toBe(55);
 });
 
-test('Store should remove all expired values', () => {
+test('Store should remove all expired values (removeExpiredValues)', () => {
     const key = 'test_key';
     const now = convertDateToNumber(new Date());
 
