@@ -1,5 +1,5 @@
-const removeExpiredValuesTask = require('./removeExpiredValuesCron');
+const removeExpiredValuesCron = require('./removeExpiredValuesCron');
 
 module.exports = () => {
-    removeExpiredValuesTask
+    removeExpiredValuesCron.task.start()
 }
