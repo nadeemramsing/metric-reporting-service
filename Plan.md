@@ -5,6 +5,10 @@
 - Testing, logging (error handling) and good documentation expected
 - Host app on AWS Lambda if possible (else, on other hosting apps)
 
+### For object validation before storing, use joi or yup
+
+### For storage, use Object, Map and then more complex Binary Tree implementations
+
 ### For documentation, use documentation generator: Swagger
 
 ### For CI/CD, use Github Actions Workflows
