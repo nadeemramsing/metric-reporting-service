@@ -7,7 +7,10 @@
 
 ### For object validation before storing, use joi or yup
 
-### For storage, use Object, Map and then more complex Binary Tree implementations
+### For storage, use Object, Map and then more complex Binary Tree implementations:
+- https://www.npmjs.com/package/splaytree (allows duplicate)
+- https://www.npmjs.com/package/bintrees (does not allow duplicate => should then add a unique index)
+- https://www.npmjs.com/package/functional-red-black-tree
 
 ### For documentation, use documentation generator: Swagger
 
@@ -15,4 +18,4 @@
 
 ### For unit testing, use Jest
 
-### For deployment to AWS Lambda, use @vendia/serverless-express
+### For deployment to AWS Lambda, use @vendia/serverless-express (or change from Express to lambda-api)
