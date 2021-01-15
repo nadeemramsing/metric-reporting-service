@@ -14,4 +14,7 @@ module.exports = express.Router()
         validate(schemaPostValueBody, 'body'),
         wrap(postMetricByKey)
     )
-    .get('/metric/:key/sum', validate(schemaGetSumBody, 'params'), wrap(getMetricSumByKey));
+    
+    .get('/metric/:key/sum', validate(schemaGetSumBody, 'params'), wrap(getMetricSumByKey))
+
+    .get('/', (req, res) => res.send('Welcome to metric-reporting-service!'));

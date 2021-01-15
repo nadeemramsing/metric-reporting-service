@@ -5,7 +5,7 @@
 - Testing, logging (error handling) and good documentation expected
 - Host app on AWS Lambda if possible (else, on other hosting apps)
 
-### For object validation before storing, use joi or yup
+### For object validation, use joi or yup
 
 ### For storage, use Object, Map and then more complex Binary Tree implementations:
 - https://www.npmjs.com/package/splaytree (allows duplicate)
@@ -19,3 +19,5 @@
 ### For unit testing, use Jest
 
 ### For deployment to AWS Lambda, use @vendia/serverless-express (or change from Express to lambda-api)
+- Learn how to set up AWS provider credentials: https://www.serverless.com/framework/docs/providers/aws/guide/credentials/
+- serverless config credentials --provider aws --key key --secret secret
