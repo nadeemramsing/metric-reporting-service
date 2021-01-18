@@ -22,3 +22,6 @@
 ### For deployment to AWS Lambda, use @vendia/serverless-express (or change from Express to lambda-api) POSTPONED
 - Learn how to set up AWS provider credentials: https://www.serverless.com/framework/docs/providers/aws/guide/credentials/
 - serverless config credentials --provider aws --key key --secret secret
+
+### For cold starts limitation, use 
+serverless-plugin-warmup to keep lambda function warm
