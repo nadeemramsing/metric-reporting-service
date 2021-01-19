@@ -30,3 +30,6 @@
 - For email automation, use workflow automation
 - Create workflow rule for Contacts module
 - Rule Trigger: On every Wednesday, send email based on the given criteria
+- Webhook: On call, upgrade contact's interest level
+    - https://help.zoho.com/portal/en/community/topic/email-from-template-triggered-by-custom-button
+    - https://help.zoho.com/portal/en/community/topic/instant-access-to-a-lead-from-a-link-in-the-email-template
