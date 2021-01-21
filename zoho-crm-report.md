@@ -39,21 +39,63 @@ Here is the planning I made before implementation:
 # Fields
 Here are the basic steps I followed to create some fields:
 - Click on *Create & Edit Fields*
+
 ![](zoho-crm-report-resources/0.5.png)
+
 - Add *Type* and *Interest Level* fields
+
 ![](zoho-crm-report-resources/1.png)
+
 ![](zoho-crm-report-resources/2.png)
 
+I also added *First Name*, *Last Name* and *Email Sequence* fields.
+
 # Workflow Rule
+I created a Workflow Rule with *Create Contact* on trigger to set the initial **Email Sequence** field based on **Type**. As an email is sent based on the Contact's frequency, the Email Sequence field is decremented until it reaches 0. On 0, email is no more sent.
+
+- Click *Settings icon*, then on *Workflow Rules*
+
 ![](zoho-crm-report-resources/3.png)
+
+- Trigger: When a contact is created
+- Condition: The rule is executed for all contacts
+- Instant Action: init_email_sequence
+
 ![](zoho-crm-report-resources/4.png)
+
+- Custom Function: init_email_sequence(int contactId)
+- Algorithm:
+    - Get contact by id
+    - Get type of contact
+    - Initially, emailSequence = 10 (for type == Residential)
+    - If type == Commercial then emailSequence = 8
+    - If type == Commercial then emailSequence = 7
+    - (Note: type is *mutually non-inclusive* imples else does not need to be used)
+    - Update emailSequence of contact
+
 ![](zoho-crm-report-resources/5.png)
+
+- *Contact Id* is set as argument of init_email_sequence
+
 ![](zoho-crm-report-resources/6.png)
 
 # Schedules
+The **Schedule** feature was used to automate email sending. Three different schedules were used to encourage simplicity. Frequency of schedules were easier to set when the three schedules were separated.
+
+- Three schedules: Cold, Warm, Hot
+
 ![](zoho-crm-report-resources/7.png)
+
+- Cold: Every 4 weeks
+
 ![](zoho-crm-report-resources/8.png)
+
+- Warm: Every 2 weeks
+
 ![](zoho-crm-report-resources/9.png)
+
+- Hot: Every week
+
 ![](zoho-crm-report-resources/10.png)
 
 Function name: Send Mail - Cold
@@ -91,13 +133,21 @@ for each contact in contactList
 ```
 The **Send Mail - Warm** and **Send Mail - Hot** are the same, except that the condition **interestLevel != "Cold"** uses "Warm" and "Cold" respectively. 
 
+### Best Practices: Separate HTML Template
+Instead of hardcoding the Webhook URL in the Custom Function, the html code can be written from a NodeJS microservice and fetched using deluge's getUrl method. Thus, principles to be applied: Separation of Concern, Low Coupling, etc. This will make the html template more testable and maintainable as well.
+
+# Testing
+
+- Here is a test email when the *Save and Execute* button was clicked in the Deluge Code Editor.
+- As we can see, on **Show More Interest** button hover, a webhook url appears in Chrome in the bottom.
+
 ![](zoho-crm-report-resources/11.png)
 
-- In *Recent Executions*, we can see that our webhook was triggered from the click button action from the email sent. Note that the *Failure* executions happened during testing. 
+- In *Recent Executions* in Zoho Flow, we can see that our webhook was triggered from the click button action from the email sent. Note that the *Failure* executions happened during other initial tests. 
+
 ![](zoho-crm-report-resources/12.png)
 
-
-### Best Practices: Separate HTML Template
-Instead of hardcoding the Webhook URL in the Custom Function, the html code can be written from a NodeJS microservice and fetched deluge's getUrl method. Thus, principles to be applied: Separation of Concern, Low Coupling, etc. This will make the html template more testable and maintainable as well.
-
 # Flow
+![](zoho-crm-report-resources/flow-1.png)
+![](zoho-crm-report-resources/flow-2.png)
+![](zoho-crm-report-resources/flow-3.png)
