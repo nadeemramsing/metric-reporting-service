@@ -1,6 +1,6 @@
 {
   "name": "metric-reporting-service",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Metric logging and reporting service that sums metrics by time window for the most recent hour.",
   "main": "app.js",
   "scripts": {
