@@ -133,7 +133,7 @@ for each contact in contactList
 ```
 The **Send Mail - Warm** and **Send Mail - Hot** are the same, except that the condition **interestLevel != "Cold"** uses "Warm" and "Cold" respectively. 
 
-### Best Practices: Separate HTML Template
+## Best Practices: Separate HTML Template
 Instead of hardcoding the Webhook URL in the Custom Function, the html code can be written from a NodeJS microservice and fetched using deluge's getUrl method. Thus, principles to be applied: Separation of Concern, Low Coupling, etc. This will make the html template more testable and maintainable as well.
 
 # Testing
@@ -147,7 +147,30 @@ Instead of hardcoding the Webhook URL in the Custom Function, the html code can 
 
 ![](zoho-crm-report-resources/12.png)
 
-# Flow
+# Flow (Extra Credit)
+Flow has been used to implement the **On button click in email, increase interest level of contact** feature.
+
+- Create a WebHook Trigger with JSON as Payload 
+
 ![](zoho-crm-report-resources/flow-1.png)
+
+- Custom Function: upgrade_interest_level(string contactId) with ${webhookTrigger.payload.contact} used as argument.
+- Algorithm:
+    - Get contact by contact id
+    - Get interest level (text) from contact
+    - Create a map of index-interestLevelText (key-value)
+    - Create a map of interestLevelText-index (key-value)
+    - Get index of current interest level using textToIndexMap
+    - Increment index of current interest level to get index of next interest level
+    - Get text of next interest level using indexToTextMap
+    - Update contact by id with new interest level
+
 ![](zoho-crm-report-resources/flow-2.png)
+
+- Drag and drop and custom function to associate it with the webhook
+
 ![](zoho-crm-report-resources/flow-3.png)
+
+- As previously shown, here is what happens when the button linked to the webhook is clicked in an email. Success means that the custom function upgrade_interest_level ran without throwing any error.
+
+![](zoho-crm-report-resources/12.png)
