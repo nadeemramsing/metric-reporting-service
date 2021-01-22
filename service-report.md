@@ -122,6 +122,8 @@ For the date, rather than using the type **Date**, **number** was used.
 
 The conversion from Date to Number:
 
+![](service-report-resources/15.png)
+
 The cron job:
 
 ![](service-report-resources/16.png)
