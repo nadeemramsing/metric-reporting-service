@@ -248,3 +248,8 @@ serverless config credentials --provider aws --key key --secret secret
 ```
 sls deploy
 ```
+
+### Errors during deployment
+Different errors occurred during deployment, but all were due to missing permissions. After adding the following permission, the deployment worked perfectly.
+
+![](service-report-resources/21.png)
