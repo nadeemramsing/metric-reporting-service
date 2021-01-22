@@ -10,6 +10,6 @@ function wrap(method) {
             const resolved = await method(req)
             res.send(typeof resolved === 'number' ? '' + resolved : resolved)
         }
-        catch (e) { next(e) }
+        catch (e) { res.status(500).send(e) }
     }
 }

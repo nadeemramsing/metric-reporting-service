@@ -22,6 +22,8 @@ app.use(compression());
 
 app.use('/', require('./routing'));
 
-app.listen(port, console.log.apply(null, ['Server is listening on Port', port]));
+app.listen(port, console.log.bind(null, 'Server is listening on Port', port));
 
 beginCrons();
+
+module.exports = app;
